@@ -17,8 +17,11 @@ content = resp.content.decode('utf-8')
 
 #使用lxml的etree解析html文件
 html = etree.HTML(content)
+#红球
 red = html.xpath('//tbody[@id="tdata"]//td[@class="cfont2"]/text()')
+#蓝球
 blue =html.xpath('//tbody[@id="tdata"]//td[@class="cfont4"]/text()')
+#期号
 time = html.xpath('//*[@id="tdata"]/tr/td[1]/text()')
 reds = []
 blues = []
@@ -31,7 +34,7 @@ csv_write=csv.writer(file)
 csv_write.writerow(['期号','号码1', '号码2', '号码3', '号码4', '号码5', '号码6', '号码7'])
 
 
-
+#将红球与蓝球组合
 for i,j,k in zip(time,reds,blues):
     a = []
     a.append(i)
@@ -44,10 +47,11 @@ for i,j,k in zip(time,reds,blues):
     a.append(k[1])
     csv_write.writerow(a)
 file.close()
-#
+#存到本地文件
 x = pd.read_csv('C:\\Users\\33628\\Desktop\\大乐透.csv')
 c = x.loc[:,['号码1','号码2','号码3','号码4','号码5','号码6','号码7']]
 
+#此部分为统计近50期中的各个数字出现次数并画图展示
 # a = c.head(50)
 # red = pd.DataFrame(a,columns=['号码1','号码2','号码3','号码4','号码5'])
 # haoma = pd.DataFrame(red.to_numpy().reshape(-1, 1, order='F'), columns=['count'])
@@ -72,6 +76,7 @@ c = x.loc[:,['号码1','号码2','号码3','号码4','号码5','号码6','号码
 # # plt.plot()
 # # plt.show()
 
+#随机产生3组从未出现过的号
 for i in range(3):
     a = random.sample(range(1,35),5)
     sorted_num_red = sorted(a)
