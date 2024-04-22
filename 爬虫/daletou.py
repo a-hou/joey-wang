@@ -5,6 +5,7 @@ from lxml import etree
 import csv
 from matplotlib  import pyplot as plt
 import random
+
 #大乐透url，通过修改最后的最近一期的期号（即24***）来爬取所有期的号
 url = 'http://datachart.500.com/dlt/history/newinc/history.php?start=07001&end=24044'
 
@@ -49,7 +50,7 @@ for i,j,k in zip(time,reds,blues):
     csv_write.writerow(a)
 file.close()
 #存到本地文件
-x = pd.read_csv('C:\\Users\\33628\\Desktop\\大乐透.csv')
+x = pd.read_csv('大乐透.csv')
 c = x.loc[:,['号码1','号码2','号码3','号码4','号码5','号码6','号码7']]
 
 #此部分为统计近50期中的各个数字出现次数并画图展示
