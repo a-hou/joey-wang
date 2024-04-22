@@ -5,8 +5,8 @@ from lxml import etree
 import csv
 from matplotlib  import pyplot as plt
 import random
-
-url = 'http://datachart.500.com/dlt/history/newinc/history.php?start=07001&end=24008'
+#大乐透url，通过修改最后的最近一期的期号（即24***）来爬取所有期的号
+url = 'http://datachart.500.com/dlt/history/newinc/history.php?start=07001&end=24044'
 
 headers = {
     "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.188",
@@ -29,7 +29,8 @@ for i in range(0,len(red),5):
     reds.append(red[i:i+5])
 for i in range(0,len(blue),2):
     blues.append(blue[i:i+2])
-file =open('C:\\Users\\33628\\Desktop\\大乐透.csv','w',encoding='utf-8-sig',newline='')
+#在本地创建'大乐透.csv'
+file =open('大乐透.csv','w',encoding='utf-8-sig',newline='')
 csv_write=csv.writer(file)
 csv_write.writerow(['期号','号码1', '号码2', '号码3', '号码4', '号码5', '号码6', '号码7'])
 
