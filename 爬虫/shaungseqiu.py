@@ -33,8 +33,8 @@ for i in range(1,156,1):
         numbers.append(number[j:j + 7])
     print('第{}页已经爬取'.format(i))
 
-
-file =open('C:\\Users\\33628\\Desktop\\双色球.csv','w',encoding='utf-8-sig',newline='')
+#在本地创建 双色球.csv
+file =open('双色球.csv','w',encoding='utf-8-sig',newline='')
 
 csv_write = csv.writer(file)
 
@@ -53,7 +53,7 @@ for t_n,num in zip(times_num,numbers):
 file.close()
 
 #随机选取号，并分析
-x = pd.read_csv('C:\\Users\\33628\\Desktop\\双色球.csv')
+x = pd.read_csv('双色球.csv')
 c = x.loc[:,['号码1','号码2','号码3','号码4','号码5','号码6','号码7']]
 
 for i in range(3):
